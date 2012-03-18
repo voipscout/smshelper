@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "smshelper"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Voip Scout"]
@@ -42,6 +42,7 @@ Gem::Specification.new do |s|
     "lib/smshelper/languagetools.rb",
     "lib/smshelper/languagetools/languagetools.rb",
     "lib/smshelper/message.rb",
+    "smshelper.gemspec",
     "spec/smshelper_spec.rb",
     "spec/spec_helper.rb"
   ]
