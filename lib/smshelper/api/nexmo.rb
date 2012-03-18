@@ -2,6 +2,7 @@ module Smshelper
   module Api
     class Nexmo < Base
       base_uri 'http://rest.nexmo.com'
+      headers 'Accept' => 'application/json'
 
       def initialize(*args)
         config = args.shift
@@ -26,8 +27,7 @@ module Smshelper
       end
 
       def get_balance
-        raise NotImplementedError, "#{self.class.name} currently does not implemet #get_balance, stay tuned!"
-        # (get "account/get-balance/#{@uname}/#{@passwd}")
+        {'EUR' => (get "account/get-balance/#{@uname}/#{@passwd}").values.last.to_s}
       end
 
       def get_status(message_id)
