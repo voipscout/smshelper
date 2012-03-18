@@ -1,9 +1,62 @@
 = smshelper
+A small utility library to do SMS-MT
 
-Description goes here.
+== Currently supported providers:
 
+* www.bulksms.com
+* www.webtext.com
+* www.clickatell.com
+* www.textmagic.com
+* www.smstrade.eu
+* www.esendex.com
+* www.mediaburst.co.uk
+* www.nexmo.com
+== Features
+
+* unicode support
+* send message
+* check balance
+* check sent message status
+== Installation
+
+gem install smshelper
+== Usage
+
+config = Smshelper::Config.new(
+                               :smswarehouse => {:uname => '', :passwd => ''},
+                               :routomessaging => {:uname => '', :passwd => ''},
+                               :webtext => {:uname => '', :passwd => ''},
+                               :bulksms => {:uname => '', :passwd => ''},
+                               :clickatell => {:api_key => '',:uname => '', :passwd => ''},
+                               :textmagic => {:uname => '', :passwd => ''},
+                               :smstrade => {:api_key => ''},
+                               :esendex => {:uname => '', :passwd => '', :acc => ''},
+                               :mediaburst => {:uname => '', :passwd => ''},
+                               :nexmo => {:uname => '', :passwd => ''},
+                               :detectlanguage_dot_com => '',
+                               :alchemy_language => '')
+
+service0 = Smshelper::Api::Bulksms.new config
+service1 = Smshelper::Api::Webtext.new config
+service2 = Smshelper::Api::Clickatell.new config
+service3 = Smshelper::Api::Textmagic.new config
+service4 = Smshelper::Api::Smstrade.new config, :route => 'gold' # or 'direct'
+service5 = Smshelper::Api::Esendex.new config, 'com:validityperiod' => '1'
+service6 = Smshelper::Api::MediaBurst.new config
+service7 = Smshelper::Api::Nexmo.new config, :ttl => '60000'
+
+message = Smshelper::Message.new(:recipient => '',
+                                 :text => "The balance on #{service.class.to_s} is #{service.get_balance}",
+                                 :sender => '',
+                                 :api => config)
+serviceX.send_message message
+== TODO:
+
+* create rspec tests
+* refactor spaghetti code
+* add support for www.totext.net, www.my-cool-sms.com, sms.vianett.com, www.world-text.com, www.mpulse.eu, www.clicksms.co.uk, www.tellustalk.com, www.aql.com, www.tm4b.com, www.txtnation.com, www.smsextrapro.com, www.truesenses.com, www.traitel.com.au
 == Contributing to smshelper
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
 * Fork the project.
@@ -14,6 +67,4 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2012 Voip Scout. See LICENSE.txt for
-further details.
-
+Copyright (c) 2012 Voip Scout.
