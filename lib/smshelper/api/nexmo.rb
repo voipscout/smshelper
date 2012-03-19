@@ -31,7 +31,6 @@ module Smshelper
       end
 
       def get_status(message_id)
-
       end
 
       private
