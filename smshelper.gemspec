@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "smshelper"
-  s.version = "0.1.1"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Voip Scout"]
-  s.date = "2012-03-18"
+  s.date = "2012-03-19"
   s.description = "works with esendex, textmagic, smstrade, bulksms, routomessaging, smswarehouse, mediaburst, clickatell, webtext"
   s.email = "voipscout@gmail.com"
   s.extra_rdoc_files = [
