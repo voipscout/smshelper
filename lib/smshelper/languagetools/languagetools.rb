@@ -31,6 +31,7 @@ module Smshelper
     end
 
     class Charset
+      include Singleton
       GSM_CHARSET = "@£$¥èéùìòÇ\nØø\rÅåΔ_ΦΓΛΩΠΨΣΘΞ\e\f^{}\\[~]|€ÆæßÉ !\"#¤%&'()*+,-./0123456789:;<=>?¡ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÑÜ§¿abcdefghijklmnopqrstuvwxyzäöñüà".scan(/./u)
       ESCAPED_CHARS = "{}\\~[]|€"
       # Returns +true+ if the supplied text contains only characters from
