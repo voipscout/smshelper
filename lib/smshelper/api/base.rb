@@ -13,7 +13,7 @@ module Smshelper
         @log.level = DEBUG #ERROR
 
         @sent_message_ids, @sent_message_statuses = Array.new, Hash.new
-        @response_code = ResponseCodes.instance
+        @response_code = ResponseCodes.new
         @extra_options = args.shift
       end
     end

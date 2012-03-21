@@ -11,7 +11,7 @@ module Smshelper
     end
 
     def is_gsm(text)
-      dl = Smshelper::Languagetools::Charset.instance
+      dl = Smshelper::Languagetools::Charset.new
       lang = dl.is_gsm(text)
     end
 

@@ -2,8 +2,6 @@
 module Smshelper
   module Api
     class ResponseCodes
-      include Singleton
-
       BULKSMS = {
         '0' => 'In progress',
         '1' => 'Scheduled',
