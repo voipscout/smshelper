@@ -22,8 +22,7 @@ A small utility library to do SMS-MT
 gem install smshelper
 == Usage
 
-config = Smshelper::Config.new(
-                               :smswarehouse => {:uname => '', :passwd => ''},
+config = Smshelper::Config.new(:smswarehouse => {:uname => '', :passwd => ''},
                                :routomessaging => {:uname => '', :passwd => ''},
                                :webtext => {:uname => '', :passwd => ''},
                                :bulksms => {:uname => '', :passwd => ''},
@@ -45,15 +44,12 @@ service5 = Smshelper::Api::Esendex.new config, 'com:validityperiod' => '1'
 service6 = Smshelper::Api::MediaBurst.new config
 service7 = Smshelper::Api::Nexmo.new config, :ttl => '60000'
 
-message = Smshelper::Message.new(:recipient => '',
-                                 :text => "The balance on #{service.class.to_s} is #{service.get_balance}",
-                                 :sender => '',
-                                 :api => config)
+message = Smshelper::Message.new(:recipient => '', :text => "The balance on #{service.class.to_s} is #{service.get_balance}", :sender => '',:api => config)
 serviceX.send_message message
 == TODO:
 
-* create rspec tests
-* refactor spaghetti code
+* create tests
+* refactor
 * add support for www.totext.net, www.my-cool-sms.com, sms.vianett.com, www.world-text.com, www.mpulse.eu, www.clicksms.co.uk, www.tellustalk.com, www.aql.com, www.tm4b.com, www.txtnation.com, www.smsextrapro.com, www.truesenses.com, www.traitel.com.au
 == Contributing to smshelper
 

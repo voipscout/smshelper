@@ -7,7 +7,6 @@ source "http://rubygems.org"
 # Include everything needed to run rake, tests, features, etc.
 gem 'api_smith'
 gem 'savon'
-gem 'log4r'
 gem 'textmagic'
 gem 'mediaburst'
 

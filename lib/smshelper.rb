@@ -1,6 +1,5 @@
 require 'savon'
 require 'textmagic'
-require 'log4r'
 require 'mediaburst'
 require 'api_smith'
 
