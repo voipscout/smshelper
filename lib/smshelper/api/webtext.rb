@@ -12,7 +12,7 @@ module Smshelper
       end
 
       def send_message(message)
-        uuid = @uuid.generate
+        uuid = (Digest::CRC32.hexdigest @uuid.generate).unpack('U*').collect {|x| sprintf '%02X', x}.join
 
         if message.utf_8
           message.to_hex_be
