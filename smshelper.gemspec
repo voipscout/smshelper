@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "smshelper"
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Voip Scout"]
-  s.date = "2012-03-31"
+  s.date = "2012-04-03"
   s.description = "works with esendex, textmagic, smstrade, bulksms, routomessaging, smswarehouse, mediaburst, clickatell, webtext"
   s.email = "voipscout@gmail.com"
   s.extra_rdoc_files = [
@@ -26,17 +26,22 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/smshelper.rb",
     "lib/smshelper/api.rb",
+    "lib/smshelper/api/aql.rb",
     "lib/smshelper/api/base.rb",
     "lib/smshelper/api/bulksms.rb",
     "lib/smshelper/api/clickatell.rb",
     "lib/smshelper/api/esendex.rb",
     "lib/smshelper/api/mediaburst.rb",
+    "lib/smshelper/api/mycoolsms.rb",
     "lib/smshelper/api/nexmo.rb",
     "lib/smshelper/api/response_codes.rb",
     "lib/smshelper/api/routomessaging.rb",
     "lib/smshelper/api/smstrade.rb",
     "lib/smshelper/api/smswarehouse.rb",
     "lib/smshelper/api/textmagic.rb",
+    "lib/smshelper/api/traitel.rb",
+    "lib/smshelper/api/txtnation.rb",
+    "lib/smshelper/api/vianett.rb",
     "lib/smshelper/api/webtext.rb",
     "lib/smshelper/config.rb",
     "lib/smshelper/languagetools.rb",
@@ -49,7 +54,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/voipscout/smshelper"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.15"
+  s.rubygems_version = "1.8.19"
   s.summary = "sms helper gem"
 
   if s.respond_to? :specification_version then
@@ -58,8 +63,10 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<api_smith>, [">= 0"])
       s.add_runtime_dependency(%q<savon>, [">= 0"])
+      s.add_runtime_dependency(%q<nokogiri>, [">= 0"])
       s.add_runtime_dependency(%q<textmagic>, [">= 0"])
-      s.add_runtime_dependency(%q<mediaburst>, [">= 0"])
+      s.add_runtime_dependency(%q<uuid>, [">= 0"])
+      s.add_runtime_dependency(%q<digest-crc>, [">= 0"])
       s.add_development_dependency(%q<pry>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<rdoc>, [">= 0"])
@@ -69,8 +76,10 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<api_smith>, [">= 0"])
       s.add_dependency(%q<savon>, [">= 0"])
+      s.add_dependency(%q<nokogiri>, [">= 0"])
       s.add_dependency(%q<textmagic>, [">= 0"])
-      s.add_dependency(%q<mediaburst>, [">= 0"])
+      s.add_dependency(%q<uuid>, [">= 0"])
+      s.add_dependency(%q<digest-crc>, [">= 0"])
       s.add_dependency(%q<pry>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<rdoc>, [">= 0"])
@@ -81,8 +90,10 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<api_smith>, [">= 0"])
     s.add_dependency(%q<savon>, [">= 0"])
+    s.add_dependency(%q<nokogiri>, [">= 0"])
     s.add_dependency(%q<textmagic>, [">= 0"])
-    s.add_dependency(%q<mediaburst>, [">= 0"])
+    s.add_dependency(%q<uuid>, [">= 0"])
+    s.add_dependency(%q<digest-crc>, [">= 0"])
     s.add_dependency(%q<pry>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<rdoc>, [">= 0"])
