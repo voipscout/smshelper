@@ -14,6 +14,8 @@ module Smshelper
         if message.utf_8
           message.to_hex_be
           q = {:unicode => 'true'}
+        else
+          q = {}
         end
         options = {
           :to => message.recipient,
