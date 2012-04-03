@@ -7,8 +7,11 @@ source "http://rubygems.org"
 # Include everything needed to run rake, tests, features, etc.
 gem 'api_smith'
 gem 'savon'
+gem 'nokogiri'
 gem 'textmagic'
-gem 'mediaburst'
+
+gem 'uuid'
+gem 'digest-crc'
 
 group :development do
   gem "pry"

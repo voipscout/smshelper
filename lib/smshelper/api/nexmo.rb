@@ -22,8 +22,7 @@ module Smshelper
         options = options.merge(@extra_options) unless @extra_options.nil?
         options = options.merge(q)
         resp = (post 'sms/json', :extra_query => options)
-        resp
-        # process_response_code(resp.first) ? (@sent_message_ids << resp.last.strip; resp.last.strip) : (raise ErrorDuringSend, @response_code.nexmo(resp.first))
+        process_response_code(resp['messages'].collect{|m| m['status']}.first) ? (@sent_message_ids << resp['messages'].collect{|m| m['message-id']}.first; resp['messages'].collect{|m| m['message-id']}.first) : (raise ErrorDuringSend, 'No response code provided by Nexmo!')
       end
 
       def get_balance

@@ -34,7 +34,7 @@ module Smshelper
         body = body.merge(@extra_options) unless @extra_options.nil?
 
         resp = client.request(:com, :send_message_full) {|soap| soap.header["com:MessengerHeader"] = @header; soap.body = body}
-        @sent_message_ids << resp.to_hash[:send_message_full_response][:send_message_full_result]
+        (@sent_message_ids << resp.to_hash[:send_message_full_response][:send_message_full_result]).first
       end
 
       def get_inbox

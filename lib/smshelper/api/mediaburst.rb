@@ -1,23 +1,30 @@
 module Smshelper
   module Api
-    class MediaBurst < Base
+    class Mediaburst < Base
+      base_uri 'https://api.mediaburst.co.uk/http'
+
       def initialize(*args)
         config = args.shift
-        @client = Mediaburst::API.new config.mediaburst[:uname], config.mediaburst[:passwd]
+        add_query_options! :username => config.mediaburst[:uname], :password => config.mediaburst[:passwd]
         super
       end
+
       def send_message(message)
         #TODO: rewrite Mediaburst::API.process_response to provide
         #full response data, so that msg_id could be had in @sent_message_ids
         message.utf_8 ? (q = {:msgtype => 'ucs2'}) : (q = {:msgtype => 'text'})
-        options = {:concat => '3', :from => message.sender}.merge(q)
+        options = {
+          :to => message.recipient,
+          :content => message.text,
+          :concat => '3',
+          :from => message.sender}
         options = options.merge(@extra_options) unless @extra_options.nil?
-        resp = @client.send_message message.recipient, message.text, options
-        process_response_code(resp.values.last.to_s) ? resp.to_s : (raise ErrorDuringSend, @response_code.mediaburst(resp.values.last.to_s))
+        resp = (post 'send.aspx', :extra_query => options.merge(q)).to_s.split(' ').last.strip
+        process_response_code(resp) ? resp.to_s : (raise ErrorDuringSend, "#{self.class.name} does not provide detailed response codes")
       end
 
       def get_balance
-        {'Messages' => @client.get_credit}
+        {'Messages' => (post 'credit.aspx').split(' ').last}
       end
 
       def get_status(message_id)
@@ -26,7 +33,7 @@ module Smshelper
 
       private
       def process_response_code(code)
-        (code == 'true') ? true : false
+        (code =~ /Error/) ? false : true
       end
     end
   end

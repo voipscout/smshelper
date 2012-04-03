@@ -49,5 +49,6 @@ pkg
 *.rbc
 
 #stuff for testing
+.rvmrc
 test_all_operators.rb
 Gemfile.lock

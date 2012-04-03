@@ -24,7 +24,7 @@ module Smshelper
           :from => message.sender}
         options = options.merge(@extra_options) unless @extra_options.nil?
         resp = (post '', :extra_query => options.merge(q)).split(/\n/)
-        process_response_code(resp.first) ? (@sent_message_ids << resp.last) : (raise ErrorDuringSend, @response_code.smstrade(resp.first))
+        process_response_code(resp.first) ? (@sent_message_ids << resp.last; resp.last) : (raise ErrorDuringSend, @response_code.smstrade(resp.first))
       end
 
       def get_balance

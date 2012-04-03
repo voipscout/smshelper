@@ -12,6 +12,8 @@ module Smshelper
       end
 
       def send_message(message)
+        uuid = @uuid.generate
+
         if message.utf_8
           message.to_hex_be
           q = {:unicode => '1', :hex => message.text}
@@ -19,10 +21,10 @@ module Smshelper
           q = {:txt => message.text}
         end
 
-        options = {:dest => message.recipient, :tag => message.sender}
+        options = {:dest => message.recipient, :tag => message.sender, :msgid => uuid}
         options = options.merge(@extra_options) unless @extra_options.nil?
         resp = (post "send_text.html", :extra_query => options.merge(q))
-        process_response_code(resp.to_s) ? (@response_code.webtext(resp.to_s)) : (raise ErrorDuringSend, @response_code.webtext(resp))
+        process_response_code(resp.to_s) ? (@sent_message_ids << uuid; uuid) : (raise ErrorDuringSend, @response_code.webtext(resp))
         # :validity => '2'
       end
 

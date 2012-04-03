@@ -1,3 +1,5 @@
+require 'uuid'
+require 'digest/crc32'
 require 'savon'
 require 'textmagic'
 require 'mediaburst'
