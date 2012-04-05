@@ -26,7 +26,7 @@ module Smshelper
         }
         options = options.merge(@extra_options) unless @extra_options.nil?
         resp = (get 'smsgateway.pl', :extra_query => options.merge(q)) #; resp.split(',')[2]
-        process_response_code(resp) ?  (@sent_message_ids << resp.split(',')[2]).first : (raise ErrorDuringSend "Could not deliver")
+        process_response_code(resp) ?  (@sent_message_ids << resp.split(',')[2]; resp.split(',')[2]) : (raise ErrorDuringSend "Could not deliver")
       end
 
       def get_balance
