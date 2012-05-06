@@ -21,17 +21,17 @@ A small utility library to do SMS-MT
 
 gem install smshelper
 == Usage
-
- config = Smshelper::Config.new(
-                                :webtext => {:uname => '', :passwd => ''},
-                                :bulksms => {:uname => '', :passwd => ''},
-                                :clickatell => {:api_key => '',:uname => '', :passwd => ''},
-                                :textmagic => {:uname => '', :passwd => ''},
-                                :smstrade => {:api_key => ''},
-                                :esendex => {:uname => '', :passwd => '', :acc => ''},
-                                :mediaburst => {:uname => '', :passwd => ''},
-                                :nexmo => {:uname => '', :passwd => ''}
-                                )
+  require 'smshelper'
+  config = Smshelper::Config.new(
+                                 :webtext => {:uname => '', :passwd => ''},
+                                 :bulksms => {:uname => '', :passwd => ''},
+                                 :clickatell => {:api_key => '',:uname => '', :passwd => ''},
+                                 :textmagic => {:uname => '', :passwd => ''},
+                                 :smstrade => {:api_key => ''},
+                                 :esendex => {:uname => '', :passwd => '', :acc => ''},
+                                 :mediaburst => {:uname => '', :passwd => ''},
+                                 :nexmo => {:uname => '', :passwd => ''}
+                                 )
 
   service0 = Smshelper::Api::Bulksms.new config
   service1 = Smshelper::Api::Webtext.new config
