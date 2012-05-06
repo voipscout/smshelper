@@ -22,30 +22,30 @@ A small utility library to do SMS-MT
 gem install smshelper
 == Usage
 
->> config = Smshelper::Config.new(:smswarehouse => {:uname => '', :passwd => ''},
->>                               :routomessaging => {:uname => '', :passwd => ''},
->>                               :webtext => {:uname => '', :passwd => ''},
->>                               :bulksms => {:uname => '', :passwd => ''},
->>                               :clickatell => {:api_key => '',:uname => '', :passwd => ''},
->>                               :textmagic => {:uname => '', :passwd => ''},
->>                               :smstrade => {:api_key => ''},
->>                               :esendex => {:uname => '', :passwd => '', :acc => ''},
->>                               :mediaburst => {:uname => '', :passwd => ''},
->>                               :nexmo => {:uname => '', :passwd => ''},
->>                               :detectlanguage_dot_com => '',
->>                               :alchemy_language => '')
+ config = Smshelper::Config.new(:smswarehouse => {:uname => '', :passwd => ''},
+                               :routomessaging => {:uname => '', :passwd => ''},
+                               :webtext => {:uname => '', :passwd => ''},
+                               :bulksms => {:uname => '', :passwd => ''},
+                               :clickatell => {:api_key => '',:uname => '', :passwd => ''},
+                               :textmagic => {:uname => '', :passwd => ''},
+                               :smstrade => {:api_key => ''},
+                               :esendex => {:uname => '', :passwd => '', :acc => ''},
+                               :mediaburst => {:uname => '', :passwd => ''},
+                               :nexmo => {:uname => '', :passwd => ''},
+                               :detectlanguage_dot_com => '',
+                               :alchemy_language => '')
 
->>service0 = Smshelper::Api::Bulksms.new config
->>service1 = Smshelper::Api::Webtext.new config
->>service2 = Smshelper::Api::Clickatell.new config
->>service3 = Smshelper::Api::Textmagic.new config
->>service4 = Smshelper::Api::Smstrade.new config, :route => 'gold' >> or 'direct'
->>service5 = Smshelper::Api::Esendex.new config, 'com:validityperiod' => '1'
->>service6 = Smshelper::Api::MediaBurst.new config
->>service7 = Smshelper::Api::Nexmo.new config, :ttl => '60000'
+  service0 = Smshelper::Api::Bulksms.new config
+  service1 = Smshelper::Api::Webtext.new config
+  service2 = Smshelper::Api::Clickatell.new config
+  service3 = Smshelper::Api::Textmagic.new config
+  service4 = Smshelper::Api::Smstrade.new config, :route => 'gold'  or 'direct'
+  service5 = Smshelper::Api::Esendex.new config, 'com:validityperiod' => '1'
+  service6 = Smshelper::Api::MediaBurst.new config
+  service7 = Smshelper::Api::Nexmo.new config, :ttl => '60000'
 
->>message = Smshelper::Message.new(:recipient => '', :text => "The balance on >>{service.class.to_s} is >>{service.get_balance}", :sender => '',:api => config)
->>serviceX.send_message message
+  message = Smshelper::Message.new(:recipient => '', :text => "The balance on {service.class.to_s} is {service.get_balance}", :sender => '',:api => config)
+  serviceX.send_message message
 == TODO:
 
 * create tests
