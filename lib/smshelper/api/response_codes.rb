@@ -172,6 +172,8 @@ module Smshelper
         '15' => 'Invalid sender address',
         '16' => 'Invalid TTL'}
 
+      AQL = {}
+
       def webtext(code)
         WEBTEXT[code]
       end

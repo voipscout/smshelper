@@ -11,16 +11,22 @@ A small utility library to do SMS-MT
 * www.esendex.com
 * www.mediaburst.co.uk
 * www.nexmo.com
+* www.vianett.com
+* www.traitel.com.au
+* www.my-cool-sms.com
+* www.aql.com
 == Features
 
-* unicode support
+* NEW HLR lookup support via my-cool-sms
+* unicode support - all operators
 * send message
 * check balance
-* check sent message status
+* check sent message status - select operators only
 == Installation
 
 gem install smshelper
 == Usage
+
   require 'smshelper'
   config = Smshelper::Config.new(
                                  :webtext => {:uname => '', :passwd => ''},
@@ -47,8 +53,9 @@ gem install smshelper
 == TODO:
 
 * create tests
-* refactor
-* add support for www.totext.net, www.my-cool-sms.com, sms.vianett.com, www.world-text.com, www.mpulse.eu, www.clicksms.co.uk, www.tellustalk.com, www.aql.com, www.tm4b.com, www.txtnation.com, www.smsextrapro.com, www.truesenses.com, www.traitel.com.au
+* refactor / rewrite class factories as modules
+* handle sms of any size - operator specific settings
+* add support for www.totext.net, www.world-text.com, www.mpulse.eu, www.clicksms.co.uk, www.tellustalk.com, www.tm4b.com, www.txtnation.com, www.smsextrapro.com, www.truesenses.com, www.routomessaging.net
 == Contributing to smshelper
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.

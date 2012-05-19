@@ -16,7 +16,7 @@ module Smshelper
           :destinationaddr => message.recipient,
           :message => message.text,
           :sourceaddr => message.sender,
-          :refno => '1',
+          # :refno => '1',
           :msgid => uuid}
         options = options.merge(@extra_options) unless @extra_options.nil?
         resp = (post 'MT.ashx', :extra_query => options)

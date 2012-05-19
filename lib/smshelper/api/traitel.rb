@@ -3,7 +3,6 @@ module Smshelper
     class Traitel < Base
       base_uri 'http://api.traitel.com'
       # headers 'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',  'Accept-Language' => 'en-us,en;q=0.5', 'Accept-Encoding' => 'gzip, deflate', 'DNT' => '1', 'Connection' => 'keep-alive'
-
       def initialize(*args)
         config = args.shift
         add_query_options! :user => config.traitel[:uname], :pass => config.traitel[:passwd] # "\"#{config.traitel[:passwd]}\""
@@ -25,7 +24,7 @@ module Smshelper
           :concatenate => true
         }
         options = options.merge(@extra_options) unless @extra_options.nil?
-        resp = (get 'smsgateway.pl', :extra_query => options.merge(q)) #; resp.split(',')[2]
+        resp = (get 'smsgateway.pl', :extra_query => options.merge(q))
         process_response_code(resp) ?  (@sent_message_ids << resp.split(',')[2]; resp.split(',')[2]) : (raise ErrorDuringSend "Could not deliver")
       end
 
