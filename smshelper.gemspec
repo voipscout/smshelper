@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = "smshelper"
-  s.version = "0.3.0"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Voip Scout"]
   s.date = "2012-05-19"
-  s.description = "works with esendex, textmagic, smstrade, bulksms, routomessaging, smswarehouse, mediaburst, clickatell, webtext"
+  s.description = "works www.bulksms.com, www.webtext.com, www.clickatell.com, www.textmagic.com, www.smstrade.eu, www.esendex.com, www.mediaburst.co.uk, www.nexmo.com, www.vianett.com, www.traitel.com.au, www.my-cool-sms.com, www.aql.com"
   s.email = "voipscout@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -55,7 +55,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.24"
-  s.summary = "sms helper gem"
+  s.summary = "send sms with: www.bulksms.com, www.webtext.com, www.clickatell.com, www.textmagic.com, www.smstrade.eu, www.esendex.com, www.mediaburst.co.uk, www.nexmo.com, www.vianett.com, www.traitel.com.au, www.my-cool-sms.com, www.aql.com"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
