@@ -2,13 +2,8 @@ require 'uuid'
 require 'digest/crc32'
 require 'savon'
 require 'textmagic'
-require 'mediaburst'
+require 'json'
 require 'api_smith'
-
-require 'smshelper/api'
-require 'smshelper/languagetools'
-require 'smshelper/message'
-require 'smshelper/config'
 
 module Smshelper
   class NotImplementedError < ArgumentError
@@ -16,4 +11,11 @@ module Smshelper
 
   class ErrorDuringSend < ArgumentError
   end
+
+  path = (File.dirname File.expand_path(__FILE__))
+
+  autoload :Api, "#{path}/smshelper/api"
+  autoload :Languagetools, "#{path}/smshelper/languagetools"
+  autoload :Message, "#{path}/smshelper/message"
+  autoload :Config, "#{path}/smshelper/config"
 end
