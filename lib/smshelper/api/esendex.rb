@@ -1,6 +1,7 @@
 module Smshelper
   module Api
-    class Esendex < Base
+    class Esendex < Api::Base
+
       INBOX_SERVICE_WSDL = 'https://www.esendex.com/secure/messenger/soap/InboxService.asmx?wsdl'
       SEND_SERVICE_WSDL = 'https://www.esendex.com/secure/messenger/soap/SendService.asmx?wsdl'
       ACCOUNT_SERVICE_WSDL = 'https://www.esendex.com/secure/messenger/soap/AccountService.asmx?wsdl'
@@ -58,6 +59,17 @@ module Smshelper
           resp = client.request(:com, :get_message_status) {|soap| soap.header["com:MessengerHeader"] = @header; soap.body = {"com:id" => id.to_s}}
           @sent_message_statuses[id] = resp.to_hash[:get_message_status_response][:get_message_status_result]
         end
+      end
+
+      # This expects a sinatra style params.merge(:request_body => request.body.read.to_s)
+      def get_delivery_report(args = {})
+        doc = Nokogiri::XML.parse args[:request_body]
+        DeliveryReport.new(
+                           :message_id => doc.search('MessageId').children.to_s,
+                           :timestamp => Time.parse(doc.search('OccurredAt').children.to_s),
+                           :delivered => (doc.search('MessageDelivered').empty? ? false : true),
+                           :original_params => args
+                           )
       end
 
       private
