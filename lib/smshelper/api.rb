@@ -22,6 +22,5 @@ module Smshelper
     autoload :Txtnation, "#{path}/api/txtnation"
     autoload :Totext, "#{path}/api/totext"
     autoload :Mycoolsms, "#{path}/api/mycoolsms"
-
   end
 end

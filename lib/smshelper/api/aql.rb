@@ -32,6 +32,16 @@ module Smshelper
         raise NotImplementedError, "Aql does not implement status check"
       end
 
+      def get_callback_response(args = {})
+          DeliveryReport.new(
+                             :message_id => args['message_id'],
+                             :timestamp => Time.now,
+                             :delivered => ((args['status'] == '1') ? true : false),
+                             :original_params => args
+                             )
+      end
+
+      private
       def process_response_code(code)
         (code =~ /SMS successfuly queued/) ? true : false
       end
