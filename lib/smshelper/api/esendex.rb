@@ -62,14 +62,26 @@ module Smshelper
       end
 
       # This expects a sinatra style params.merge(:request_body => request.body.read.to_s)
-      def get_delivery_report(args = {})
-        doc = Nokogiri::XML.parse args[:request_body]
-        DeliveryReport.new(
-                           :message_id => doc.search('MessageId').children.to_s,
-                           :timestamp => Time.parse(doc.search('OccurredAt').children.to_s),
-                           :delivered => (doc.search('MessageDelivered').empty? ? false : true),
-                           :original_params => args
-                           )
+      def get_callback_reponse(args = {})
+        if args['notificationType'] == 'MessageReceived'
+          InboundMessage.new(
+                             :message_id => args['id'],
+                             :sender => args['originator'],
+                             :recipient => args['recipient'],
+                             :text => args['body'],
+                             :timestamp => Time.now,
+                             :original_params => args
+                             )
+        elsif args['notificationType'] == 'MessageEvent'
+          DeliveryReport.new(
+                             :message_id => args['id'],
+                             :timestamp => Time.now,
+                             :delivered => ((args['eventType'] == 'Delivered') ? true : false),
+                             :original_params => args
+                             )
+        else
+          UnknownReply.new(args)
+        end
       end
 
       private

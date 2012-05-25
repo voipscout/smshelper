@@ -26,7 +26,7 @@ module Smshelper
         {message_id => @sent_message_statuses[message_id]}
       end
 
-      def get_delivery_report(args = {})
+      def get_callback_response(args = {})
         DeliveryReport.new(
                            :message_id => args['message_id'],
                            :timestamp => Time.now,
@@ -34,7 +34,6 @@ module Smshelper
                            :original_params => args
                            )
       end
-
     end
   end
 end

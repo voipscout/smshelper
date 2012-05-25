@@ -11,24 +11,26 @@ module Smshelper
         @response_code = ResponseCodes.new
         @extra_options = args.shift
         @uuid = UUID.new
-        report_class_factory
+        class_factory 'DeliveryReport', 'InboundMessage', 'UnknownReply'
       end
 
       protected
-      def report_class_factory
-        klass = self.class.const_set('DeliveryReport', Class.new)
-        klass.class_eval do
-          attr_reader :uuid, :service
+      def class_factory(*names)
+        names.each do |name|
+          klass = self.class.const_set(name, Class.new)
+          klass.class_eval do
+            attr_reader :uuid, :service
 
-          define_method(:initialize) do |args = {}|
-            args.each do |k,v|
-              unless k.to_s =~ (/splat/ || /captures/)
-                self.class.send(:define_method, k.to_sym) {v}
-                instance_variable_set("@"+k.to_s, v)
+            define_method(:initialize) do |args = {}|
+              args.each do |k,v|
+                unless k.to_s =~ (/splat/ || /captures/)
+                  self.class.send(:define_method, k.to_sym) {v}
+                  instance_variable_set("@"+k.to_s, v)
+                end
               end
+              instance_variable_set("@uuid", UUID.generate)
+              instance_variable_set("@service", self.class.name.split('::')[2])
             end
-            instance_variable_set("@uuid", UUID.generate)
-            instance_variable_set("@service", self.class.name.split('::')[2])
           end
         end
       end
