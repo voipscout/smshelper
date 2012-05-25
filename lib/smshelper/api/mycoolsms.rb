@@ -29,10 +29,11 @@ module Smshelper
       end
 
       def get_callback_response(args = {})
+        data = JSON.parse args[:request_body]
         DeliveryReport.new(
-                           :message_id => args['message_id'],
+                           :message_id => data['smsid'],
                            :timestamp => Time.now,
-                           :delivered => ((args['status'] == '1') ? true : false),
+                           :delivered => ((data['status'] == 'SMS_STATUS_DELIVERED') ? true : false),
                            :original_params => args
                            )
       end
