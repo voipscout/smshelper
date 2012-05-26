@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Voip Scout"]
-  s.date = "2012-05-19"
+  s.date = "2012-05-26"
   s.description = "works www.bulksms.com, www.webtext.com, www.clickatell.com, www.textmagic.com, www.smstrade.eu, www.esendex.com, www.mediaburst.co.uk, www.nexmo.com, www.vianett.com, www.traitel.com.au, www.my-cool-sms.com, www.aql.com"
   s.email = "voipscout@gmail.com"
   s.extra_rdoc_files = [
