@@ -1,5 +1,5 @@
 = smshelper
-A small utility library to do SMS-MT
+A utility library to do SMS-MT
 
 == Currently supported providers:
 
