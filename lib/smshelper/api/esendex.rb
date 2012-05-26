@@ -1,6 +1,7 @@
 module Smshelper
   module Api
-    class Esendex < Base
+    class Esendex < Api::Base
+
       INBOX_SERVICE_WSDL = 'https://www.esendex.com/secure/messenger/soap/InboxService.asmx?wsdl'
       SEND_SERVICE_WSDL = 'https://www.esendex.com/secure/messenger/soap/SendService.asmx?wsdl'
       ACCOUNT_SERVICE_WSDL = 'https://www.esendex.com/secure/messenger/soap/AccountService.asmx?wsdl'
@@ -57,6 +58,29 @@ module Smshelper
         message_id.each do |id|
           resp = client.request(:com, :get_message_status) {|soap| soap.header["com:MessengerHeader"] = @header; soap.body = {"com:id" => id.to_s}}
           @sent_message_statuses[id] = resp.to_hash[:get_message_status_response][:get_message_status_result]
+        end
+      end
+
+      # This expects a sinatra style params.merge(:request_body => request.body.read.to_s)
+      def get_callback_response(args = {})
+        if args['notificationType'] == 'MessageReceived'
+          InboundMessage.new(
+                             :message_id => args['id'],
+                             :sender => args['originator'],
+                             :recipient => args['recipient'],
+                             :text => args['body'],
+                             :timestamp => Time.now,
+                             :original_params => args
+                             )
+        elsif args['notificationType'] == 'MessageEvent'
+          DeliveryReport.new(
+                             :message_id => args['id'],
+                             :timestamp => Time.now,
+                             :delivered => ((args['eventType'] == 'Delivered') ? true : false),
+                             :original_params => args
+                             )
+        else
+          UnknownReply.new(args)
         end
       end
 

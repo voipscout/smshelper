@@ -1,9 +1,9 @@
-# require 'smshelper/api/smswarehouse'
-# require 'smshelper/api/routomessaging'
+require 'hashie'
 
 module Smshelper
   module Api
     path = (File.dirname File.expand_path(__FILE__))
+    VERSION = '0.0.1'#File.read('blahblah')
 
     autoload :Base, "#{path}/api/base"
     autoload :ResponseCodes, "#{path}/api/response_codes"

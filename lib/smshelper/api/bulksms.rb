@@ -41,6 +41,16 @@ module Smshelper
         {message_id => @sent_message_statuses[message_id]}
       end
 
+      def get_callback_response(args = {})
+          DeliveryReport.new(
+                             :message_id => args['batch_id'],
+                             :timestamp => Time.now,
+                             :delivered => ((args['status'] == '11') ? true : false),
+                             :status => @response_code.bulksms(args['status']),
+                             :original_params => args
+                             )
+      end
+
       private
       def process_response_code(code)
         (code == '0') ? true : false

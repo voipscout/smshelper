@@ -3,6 +3,7 @@ require 'digest/crc32'
 require 'savon'
 require 'textmagic'
 require 'json'
+require 'time'
 require 'api_smith'
 
 module Smshelper
