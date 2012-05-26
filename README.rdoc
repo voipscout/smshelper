@@ -20,7 +20,7 @@ A utility library to do SMS-MT
 * NEW HLR lookup support via my-cool-sms
 * unicode support - all operators
 * send message
-* check balance
+* check balance, all except vianett
 * check sent message status - select operators only
 == Installation
 
