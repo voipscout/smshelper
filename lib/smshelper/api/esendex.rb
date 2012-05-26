@@ -62,7 +62,7 @@ module Smshelper
       end
 
       # This expects a sinatra style params.merge(:request_body => request.body.read.to_s)
-      def get_callback_reponse(args = {})
+      def get_callback_response(args = {})
         if args['notificationType'] == 'MessageReceived'
           InboundMessage.new(
                              :message_id => args['id'],

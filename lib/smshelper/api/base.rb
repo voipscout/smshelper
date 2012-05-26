@@ -31,6 +31,15 @@ module Smshelper
               instance_variable_set("@uuid", UUID.generate)
               instance_variable_set("@service", self.class.name.split('::')[2])
             end
+
+            # define_method("marshal_dump".to_sym) do
+            #   self.to_yaml
+            # end
+
+            # define_method("marshal_load".to_sym) do |yaml|
+            #   YAML.load(yaml)
+            # end
+
           end
         end
       end

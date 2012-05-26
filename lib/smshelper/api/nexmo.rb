@@ -32,7 +32,7 @@ module Smshelper
       def get_status(message_id)
       end
 
-      def get_callback_reponse(args = {})
+      def get_callback_response(args = {})
         if args['type']
           InboundMessage.new(
                              :message_id => args['messageId'],
