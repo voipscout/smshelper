@@ -25,6 +25,15 @@ module Smshelper
         @sent_message_statuses[message_id] << {"Part 01" => @api.message_status(message_id)}
         {message_id => @sent_message_statuses[message_id]}
       end
+
+      def get_callback_response(args = {})
+        DeliveryReport.new(
+                           :message_id => args['message_id'],
+                           :timestamp => Time.now,
+                           :delivered => ((args['status'] =~ /d/) ? true : false),
+                           :original_params => args
+                           )
+      end
     end
   end
 end

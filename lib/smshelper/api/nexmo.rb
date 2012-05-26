@@ -32,6 +32,28 @@ module Smshelper
       def get_status(message_id)
       end
 
+      def get_callback_response(args = {})
+        if args['type']
+          InboundMessage.new(
+                             :message_id => args['messageId'],
+                             :sender => args['msisdn'],
+                             :recipient => args['to'],
+                             :text => args['text'],
+                             :timestamp => Time.parse(args['message-timestamp']),
+                             :original_params => args
+                             )
+        elsif args['network-code']
+          DeliveryReport.new(
+                             :message_id => args['messageId'],
+                             :timestamp => Time.parse(args['message-timestamp']),
+                             :delivered => ((args['status'] == 'delivered') ? true : false),
+                             :original_params => args
+                             )
+        else
+          UnknownReply.new(args)
+        end
+      end
+
       private
       def process_response_code(code)
         (code == '0') ? true : false

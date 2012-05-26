@@ -36,6 +36,15 @@ module Smshelper
         raise NotImplementedError, "Sms status checks unsupported by #{self.class.name}"
       end
 
+      def get_callback_response(args = {})
+        DeliveryReport.new(
+                           :message_id => args['message_id'],
+                           :timestamp => Time.now,
+                           :delivered => ((args['status'] == 'DELIVERED') ? true : false),
+                           :original_params => args
+                           )
+      end
+
       private
       def process_response_code(code)
         (code == '100') ? true : false
