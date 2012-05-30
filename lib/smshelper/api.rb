@@ -19,8 +19,9 @@ module Smshelper
 
     autoload :Aql, "#{path}/api/aql"
     autoload :Vianett, "#{path}/api/vianett"
-    autoload :Txtnation, "#{path}/api/txtnation"
-    autoload :Totext, "#{path}/api/totext"
+    #autoload :Txtnation, "#{path}/api/txtnation"
+    #autoload :Totext, "#{path}/api/totext"
     autoload :Mycoolsms, "#{path}/api/mycoolsms"
+    autoload :Routomessaging, "#{path}/api/routomessaging"
   end
 end
