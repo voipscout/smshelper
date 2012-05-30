@@ -2,7 +2,6 @@
 module Smshelper
   module Api
     class Routomessaging < Base
-      # base_uri "http://smsc5.routotelecom.com"
 
       def initialize(*args)
         config = args.shift
@@ -12,8 +11,7 @@ module Smshelper
       end
 
       #send_message TO, MESSAGE, FROM
-      def send_message(*args)
-        message = args.shift
+      def send_message(message)
         uuid = (Digest::CRC32.hexdigest @uuid.generate).unpack('U*').collect {|x| sprintf '%02X', x}.join
 
         if message.utf_8

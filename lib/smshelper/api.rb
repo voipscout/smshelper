@@ -1,4 +1,4 @@
-require 'hashie'
+require 'virtus'
 
 module Smshelper
   module Api
@@ -9,19 +9,21 @@ module Smshelper
     autoload :ResponseCodes, "#{path}/api/response_codes"
     autoload :Webtext, "#{path}/api/webtext"
     autoload :Bulksms, "#{path}/api/bulksms"
-    autoload :Clickatell, "#{path}/api/clickatell"
+
     autoload :Textmagic, "#{path}/api/textmagic"
     autoload :Smstrade, "#{path}/api/smstrade"
     autoload :Esendex, "#{path}/api/esendex"
     autoload :Mediaburst, "#{path}/api/mediaburst"
     autoload :Nexmo, "#{path}/api/nexmo"
-    autoload :Traitel, "#{path}/api/traitel"
-
     autoload :Aql, "#{path}/api/aql"
     autoload :Vianett, "#{path}/api/vianett"
     #autoload :Txtnation, "#{path}/api/txtnation"
     #autoload :Totext, "#{path}/api/totext"
     autoload :Mycoolsms, "#{path}/api/mycoolsms"
     autoload :Routomessaging, "#{path}/api/routomessaging"
+
+    # Still no support for get_callback_response
+    autoload :Traitel, "#{path}/api/traitel"
+    autoload :Clickatell, "#{path}/api/clickatell"
   end
 end

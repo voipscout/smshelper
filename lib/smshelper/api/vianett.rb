@@ -13,14 +13,15 @@ module Smshelper
         uuid = (Digest::CRC32.hexdigest @uuid.generate).unpack('U*').collect {|x| sprintf '%02X', x}.join
 
         options = {
-          :destinationaddr => message.recipient,
-          :message => message.text,
-          :sourceaddr => message.sender,
+          :tel => message.recipient,
+          :msg => message.text,
+          :senderaddress => message.sender,
+          :senderaddresstype => '1',
           # :refno => '1',
           :msgid => uuid}
-        options = options.merge(@extra_options) unless @extra_options.nil?
+        options.merge!(@extra_options) unless @extra_options.nil?
         resp = (post 'MT.ashx', :extra_query => options)
-        process_response_code(resp['ack']) ? (@sent_message_ids << uuid; uuid) : (raise ErrorDuringSend, "#{self.class.name} does not implement detailed errors")
+        process_response_code(resp) ? (@sent_message_ids << uuid; uuid) : (raise ErrorDuringSend, "#{self.class.name} does not implement detailed error reporting - #{resp}")
       end
 
       def get_balance
@@ -31,10 +32,23 @@ module Smshelper
         raise NotImplementedError, "Sms status checks unsupported by #{self.class.name}"
       end
 
-      private
+      def get_callback_response(args = {})
+        if args['requesttype'] == 'mtstatus'
+          DeliveryReport.new(
+                             :message_id => args['refno'],
+                             :timestamp => Time.now,
+                             :delivered => ((args['msgok'] == 'True') ? true : false),
+                             :original_params => args
+                             )
+        else
+          UnknownReply.new(args)
+        end
+      end
 
+
+      private
       def process_response_code(code)
-        (code == 'OK') ? true : false
+        (code['ack']['__content__'] == 'OK') ? true : false
       end
 
     end
