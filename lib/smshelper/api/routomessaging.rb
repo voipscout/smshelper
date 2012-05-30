@@ -38,7 +38,7 @@ module Smshelper
 
       def get_balance
         opts = {:username => @uname, :password => @passwd}
-        {'EUR' => (post 'http://smsc6.routotelecom.com/balance.php', :extra_query => opts).gsub("\n", '')}
+        {'EUR' => (post 'http://smsc6.routotelecom.com/balance.php', :extra_query => opts).gsub("\n", '').to_f.round(4)}
       end
 
       def hlr_lookup(number)
@@ -48,10 +48,10 @@ module Smshelper
 
       def get_callback_response(args = {})
           DeliveryReport.new(
-                             :message_id => args['batch_id'],
+                             :message_id => args['mess_id'],
                              :timestamp => Time.now,
-                             :delivered => ((args['status'] == '11') ? true : false),
-                             :status => @response_code.bulksms(args['status']),
+                             :delivered => ((args['status'] == '0') ? true : false),
+                             :status => @response_code.routomessaging(args['status']),
                              :original_params => args
                              )
       end
