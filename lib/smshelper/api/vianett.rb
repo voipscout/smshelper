@@ -17,6 +17,7 @@ module Smshelper
           :msg => message.text,
           :senderaddress => message.sender,
           :senderaddresstype => '1',
+          :nrq => '1',
           # :refno => '1',
           :msgid => uuid}
         options.merge!(@extra_options) unless @extra_options.nil?
@@ -33,11 +34,11 @@ module Smshelper
       end
 
       def get_callback_response(args = {})
-        if args['requesttype'] == 'mtstatus'
+        if args['requesttype'] == 'notificationstatus'
           DeliveryReport.new(
                              :message_id => args['refno'],
-                             :timestamp => Time.now,
-                             :delivered => ((args['msgok'] == 'True') ? true : false),
+                             :timestamp => Time.parse(args['now']),
+                             :delivered => ((args['Status'] == 'DELIVRD') ? true : false),
                              :original_params => args
                              )
         else
