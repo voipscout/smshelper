@@ -11,7 +11,7 @@ module Smshelper
         @response_code = ResponseCodes.new
         @extra_options = (args.empty? ? {} : args.shift)
         @uuid = UUID.new
-        class_factory 'DeliveryReport', 'InboundMessage', 'UnknownReply'
+        class_factory 'DeliveryReport', 'InboundMessage', 'UnknownReply', 'HlrReport'
       end
 
       protected
