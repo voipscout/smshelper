@@ -12,6 +12,7 @@ gem 'textmagic'
 
 gem 'uuid'
 gem 'digest-crc'
+gem 'virtus'
 
 group :development do
   gem "pry"
