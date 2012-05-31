@@ -174,6 +174,69 @@ module Smshelper
 
       AQL = {}
 
+      ROUTO = {
+        '0' => 'Delivered',
+        '1' => 'Rejected: Message length is invalid',
+        '2' => 'Subscriber absent',
+        '3' => 'Device memory capacity exceeded',
+        '4' => 'Equipment protocol error',
+        '5' => 'Equipment not supported',
+        '6' => 'Equipment not SM equipped',
+        '7' => 'Unknown service centre',
+        '8' => 'Service centre congestion',
+        '9' => 'Undeliverable',
+        '10' => 'Rejected: Invalid source address',
+        '11' => 'Invalid destination address',
+        '12' => 'Illegal subscriber',
+        '13' => 'Teleservice not provisioned',
+        '14' => 'Illegal equipment',
+        '15' => 'Call barred',
+        '16' => 'Facility not supported',
+        '17' => 'Subscriber busy for SM',
+        '18' => 'System failure',
+        '19' => 'Message waiting, list full',
+        '20' => 'Data missing',
+        '21' => 'Unexpected data value',
+        '22' => 'Resource limitation',
+        '23' => 'Initiating release',
+        '24' => 'Unknown alphabet',
+        '25' => 'USSD busy',
+        '26' => 'Duplicated invoke ID',
+        '27' => 'No supported service',
+        '28' => 'Mistyped parameter',
+        '29' => 'Unexpected response from peer',
+        '30' => 'Service completion failure',
+        '31' => 'No response from peer',
+        '32' => 'Invalid response received',
+        '34' => 'Invalid destination',
+        '49' => 'Message type not supported',
+        '50' => 'Destination blocked for sending',
+        '51' => 'Not enough money',
+        '52' => 'No price',
+        '67' => 'Invalid esm_class field data',
+        '69' => 'Rejected by SMSC',
+        '72' => 'Rejected: Invalid source address TON',
+        '73' => 'Rejected: Invalid source address NPI',
+        '80' => 'Rejected: Invalid destination address TON',
+        '81' => 'Rejected: Invalid destination address NPI',
+        '88' => 'Throttling error',
+        '97' => 'Rejected: Invalid scheduled delivery time',
+        '100' => 'Error sending message',
+        '247' => 'Sent',
+        '248' => 'Sent',
+        '249' => 'Rejected',
+        '250' => 'Accepted',
+        '251' => 'Undeliverable',
+        '252' => 'Deleted',
+        '253' => 'Expired',
+        '254' => 'Roaming level not supported',
+        '255' => 'Unknown error'
+      }
+      def routomessaging(code)
+        # Those are delivery callback status codes
+        ROUTO[code]
+      end
+
       def webtext(code)
         WEBTEXT[code]
       end
