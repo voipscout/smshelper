@@ -21,9 +21,7 @@ module Smshelper
       end
 
       def get_status(message_id)
-        @sent_message_statuses[message_id] = []
-        @sent_message_statuses[message_id] << {"Part 01" => @api.message_status(message_id)}
-        {message_id => @sent_message_statuses[message_id]}
+        raise NotImplementedError, "Sms status checks unsupported by #{self.class.name}"
       end
 
       def get_callback_response(args = {})

@@ -54,6 +54,10 @@ module Smshelper
                              )
       end
 
+      def get_status
+        raise NotImplementedError, "Sms status checks unsupported by #{self.class.name}"
+      end
+
       private
       def process_response_code(code)
         (code.gsub!("\n", '') == 'success') ? true : false

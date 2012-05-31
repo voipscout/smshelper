@@ -21,7 +21,7 @@ module Smshelper
           :msisdn => message.recipient,
           :message => message.text,
           :sender => message.sender}
-        options = options.merge(@extra_options) unless @extra_options.nil?
+        options.merge!(@extra_options) unless @extra_options.nil?
         resp = (post 'eapi/submission/send_sms/2/2.0', :extra_query => options.merge(q)).split('|')
         process_response_code(resp.first) ? (@sent_message_ids << resp.last.strip; resp.last.strip) : (raise ErrorDuringSend, @response_code.bulksms(resp.first))
       end

@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "smshelper"
   gem.homepage = "http://github.com/voipscout/smshelper"
   gem.license = "MIT"
-  gem.summary = %Q{send sms with: www.bulksms.com, www.webtext.com, www.clickatell.com, www.textmagic.com, www.smstrade.eu, www.esendex.com, www.mediaburst.co.uk, www.nexmo.com, www.vianett.com, www.traitel.com.au, www.my-cool-sms.com, www.aql.com}
-  gem.description = %Q{works www.bulksms.com, www.webtext.com, www.clickatell.com, www.textmagic.com, www.smstrade.eu, www.esendex.com, www.mediaburst.co.uk, www.nexmo.com, www.vianett.com, www.traitel.com.au, www.my-cool-sms.com, www.aql.com}
+  gem.summary = %Q{send sms with 10+ gateways}
+  gem.description = %Q{send sms with multiple gateways, like esendex, bulksms, clickatell etc..}
   gem.email = "voipscout@gmail.com"
   gem.authors = ["Voip Scout"]
   # dependencies defined in Gemfile

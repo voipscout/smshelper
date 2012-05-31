@@ -19,11 +19,13 @@ module Smshelper
     autoload :Mycoolsms, "#{path}/api/mycoolsms"
     autoload :Routomessaging, "#{path}/api/routomessaging"
     # Still no support for get_callback_response
+
     autoload :Traitel, "#{path}/api/traitel"
     autoload :Clickatell, "#{path}/api/clickatell"
     autoload :Webtext, "#{path}/api/webtext"
     #TODO:
     #autoload :Txtnation, "#{path}/api/txtnation"
     #autoload :Totext, "#{path}/api/totext"
+    #autoload :Smswarehouse, "#{path}/api/smswarehouse"
   end
 end
