@@ -30,6 +30,7 @@ module Smshelper
       end
 
       def get_status(message_id)
+        raise NotImplementedError, "Sms status checks unsupported by #{self.class.name}"
       end
 
       def get_callback_response(args = {})

@@ -20,6 +20,7 @@ module Smshelper
           :nrq => '1',
           # :refno => '1',
           :msgid => uuid}
+binding.pry
         options.merge!(@extra_options) unless @extra_options.nil?
         resp = (post 'http://smsc.vianett.no/V3/CPA/MT/MT.ashx', :extra_query => options)
         process_response_code(resp) ? (@sent_message_ids << uuid; uuid) : (raise ErrorDuringSend, "#{self.class.name} does not implement detailed error reporting - #{resp}")

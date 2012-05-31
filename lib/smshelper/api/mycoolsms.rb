@@ -24,6 +24,10 @@ module Smshelper
         {'EUR' => JSON.parse(post 'api-socket.php', :extra_query => {:function => 'getBalance'})['balance']}
       end
 
+      def get_status
+        raise NotImplementedError, "Sms status checks unsupported by #{self.class.name}"
+      end
+
       def hlr_lookup(number)
         JSON.parse(post 'api-socket.php', :extra_query => {:function => 'doHlrLookup', :number => number})
       end

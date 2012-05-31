@@ -53,7 +53,6 @@ module Smshelper
       #         instance_variable_set("@service", self.class.name.split('::')[2])
       #       end
 
-      #       #TODO: Find out why is this needed!
       #       define_method("_dump".to_sym) do |level|
       #         self.to_yaml
       #       end
