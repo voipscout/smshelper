@@ -53,7 +53,6 @@ module Smshelper
         end
       end
 
-
       private
       def process_response_code(code)
         (code['ack']['__content__'] == 'OK') ? true : false

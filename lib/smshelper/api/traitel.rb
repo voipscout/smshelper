@@ -23,7 +23,7 @@ module Smshelper
           :output => :verbose,
           :concatenate => true
         }
-        options = options.merge(@extra_options) unless @extra_options.nil?
+        options.merge!(@extra_options) unless @extra_options.nil?
         resp = (get 'smsgateway.pl', :extra_query => options.merge(q))
         process_response_code(resp) ?  (@sent_message_ids << resp.split(',')[2]; resp.split(',')[2]) : (raise ErrorDuringSend "Could not deliver")
       end
@@ -34,6 +34,15 @@ module Smshelper
 
       def get_status(message_id)
         raise NotImplementedError, "Sms status checks unsupported by #{self.class.name}"
+      end
+
+      def get_callback_response(args = {})
+          DeliveryReport.new(
+                             :message_id => args['tt_id'],
+                             :timestamp => Time.now,
+                             :delivered => ((args['code'] == '0') ? true : false),
+                             :original_params => args
+                             )
       end
 
       private
