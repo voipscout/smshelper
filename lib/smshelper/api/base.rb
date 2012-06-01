@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+require 'factory_girl'
+require 'hashie'
+
 module Smshelper
   module Api
     class Base
@@ -32,9 +35,26 @@ module Smshelper
               self.class.attribute(:service, String, :default => self.class.name.split('::')[2])
             end
 
+            def _dump(level)
+              self.to_yaml
+            end
+
+            def marshal_dump
+              self.to_yaml
+            end
+
+            def marshal_load(str)
+              YAML.load(str)
+            end
+
+            def self._load(str)
+              YAML.load(str)
+            end
+
           end
         end
       end
+
 
       # def class_factory(*names)
       #   names.each do |name|
