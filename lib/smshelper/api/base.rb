@@ -28,24 +28,26 @@ module Smshelper
                   self.class.attribute(k, v.class, :default => v)
                 end
               end
-              self.class.attribute(:uuid, String, :default => UUID.generate)
+              self.class.attribute(:uuid, String, :default => UUID.generate) unless args[:uuid]
               self.class.attribute(:service, String, :default => self.class.name.split('::')[2])
             end
 
             def _dump(level)
-              self.to_yaml
+              attributes.to_yaml
+              #self.to_yaml
             end
 
             def marshal_dump
-              self.to_yaml
+              attributes.to_yaml
             end
 
             def marshal_load(str)
-              YAML.load(str)
+              self.class.new(YAML.load(str))
             end
 
             def self._load(str)
-              YAML.load(str)
+              self.class.new(YAML.load(str))
+              #self.class.new(YAML.load(str))
             end
 
           end
