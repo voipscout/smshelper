@@ -5,23 +5,23 @@
 
 Gem::Specification.new do |s|
   s.name = "smshelper"
-  s.version = "0.4.0"
+  s.version = "0.4.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Voip Scout"]
-  s.date = "2012-05-26"
-  s.description = "works www.bulksms.com, www.webtext.com, www.clickatell.com, www.textmagic.com, www.smstrade.eu, www.esendex.com, www.mediaburst.co.uk, www.nexmo.com, www.vianett.com, www.traitel.com.au, www.my-cool-sms.com, www.aql.com"
+  s.date = "2012-05-31"
+  s.description = "send sms with multiple gateways, like esendex, bulksms, clickatell etc.."
   s.email = "voipscout@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
     ".rspec",
     "Gemfile",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
     "lib/smshelper.rb",
@@ -55,7 +55,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.24"
-  s.summary = "send sms with: www.bulksms.com, www.webtext.com, www.clickatell.com, www.textmagic.com, www.smstrade.eu, www.esendex.com, www.mediaburst.co.uk, www.nexmo.com, www.vianett.com, www.traitel.com.au, www.my-cool-sms.com, www.aql.com"
+  s.summary = "send sms with 10+ gateways"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
@@ -67,6 +67,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<textmagic>, [">= 0"])
       s.add_runtime_dependency(%q<uuid>, [">= 0"])
       s.add_runtime_dependency(%q<digest-crc>, [">= 0"])
+      s.add_runtime_dependency(%q<virtus>, [">= 0"])
       s.add_development_dependency(%q<pry>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<rdoc>, [">= 0"])
@@ -80,6 +81,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<textmagic>, [">= 0"])
       s.add_dependency(%q<uuid>, [">= 0"])
       s.add_dependency(%q<digest-crc>, [">= 0"])
+      s.add_dependency(%q<virtus>, [">= 0"])
       s.add_dependency(%q<pry>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<rdoc>, [">= 0"])
@@ -94,6 +96,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<textmagic>, [">= 0"])
     s.add_dependency(%q<uuid>, [">= 0"])
     s.add_dependency(%q<digest-crc>, [">= 0"])
+    s.add_dependency(%q<virtus>, [">= 0"])
     s.add_dependency(%q<pry>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<rdoc>, [">= 0"])
