@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-require 'factory_girl'
-require 'hashie'
-
 module Smshelper
   module Api
     class Base
