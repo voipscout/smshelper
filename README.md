@@ -114,7 +114,7 @@ to change a bit until v1.0.0 release
 __TODO:__
 
 * TESTs
-* introduce plugin infrastructure
+* introduce plugins
 * handle sms of any size (_currently smshelper tries to use concat
   setts, operator permitting_)
 * add support for www.totext.net, www.world-text.com, www.mpulse.eu, www.clicksms.co.uk, www.tellustalk.com, www.tm4b.com, www.txtnation.com, www.smsextrapro.com, www.truesenses.com
