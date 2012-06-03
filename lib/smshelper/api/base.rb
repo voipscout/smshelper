@@ -32,9 +32,10 @@ module Smshelper
               self.class.attribute(:service, String, :default => self.class.name.split('::')[2])
             end
 
+            # I was lazy to lookup which method takes precedence in
+            # what situation, hence:
             def _dump(level)
               attributes.to_yaml
-              #self.to_yaml
             end
 
             def marshal_dump
@@ -47,42 +48,11 @@ module Smshelper
 
             def self._load(str)
               self.class.new(YAML.load(str))
-              #self.class.new(YAML.load(str))
             end
 
           end
         end
       end
-
-
-      # def class_factory(*names)
-      #   names.each do |name|
-      #     klass = self.class.const_set(name, Class.new)
-      #     klass.class_eval do
-      #       attr_reader :uuid, :service
-
-      #       define_method(:initialize) do |args = {}|
-      #         args.each do |k,v|
-      #           unless k.to_s =~ (/splat/ || /captures/)
-      #             self.class.send(:define_method, k.to_sym) {v}
-      #             instance_variable_set("@"+k.to_s, v)
-      #           end
-      #         end
-      #         instance_variable_set("@uuid", UUID.generate)
-      #         instance_variable_set("@service", self.class.name.split('::')[2])
-      #       end
-
-      #       define_method("_dump".to_sym) do |level|
-      #         self.to_yaml
-      #       end
-
-      #       def self._load(str)
-      #         YAML.load str
-      #       end
-
-      #     end
-      #   end
-      # end
 
     end # class Base
   end # module Api
