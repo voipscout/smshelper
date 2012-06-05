@@ -17,43 +17,44 @@ module Smshelper
       protected
       def class_factory(*names)
         names.each do |name|
-          klass = self.class.const_set(name, Class.new)
-          klass.class_eval do
-            include Virtus
+          unless self.class.const_defined?(name)
+            klass = self.class.const_set(name, Class.new)
+            klass.class_eval do
+              include Virtus
 
-            define_method(:initialize) do |args = {}|
-              args.each do |k,v|
-                # Sinatra params has splat, captures
-                unless k.to_s =~ (/splat/ || /captures/)
-                  self.class.attribute(k, v.class, :default => v)
+              define_method(:initialize) do |args = {}|
+                args.each do |k,v|
+                  # Sinatra params has splat, captures
+                  unless k.to_s =~ (/splat/ || /captures/)
+                    self.class.attribute(k, v.class, :default => v)
+                  end
                 end
+                self.class.attribute(:uuid, String, :default => UUID.generate) unless args[:uuid]
+                self.class.attribute(:service, String, :default => self.class.name.split('::')[2])
               end
-              self.class.attribute(:uuid, String, :default => UUID.generate) unless args[:uuid]
-              self.class.attribute(:service, String, :default => self.class.name.split('::')[2])
-            end
 
-            # I was lazy to lookup which method takes precedence in
-            # what situation, hence:
-            def _dump(level)
-              attributes.to_yaml
-            end
+              # I was lazy to lookup which method takes precedence in
+              # what situation, hence:
+              def _dump(level)
+                attributes.to_yaml
+              end
 
-            def marshal_dump
-              attributes.to_yaml
-            end
+              def marshal_dump
+                attributes.to_yaml
+              end
 
-            def marshal_load(str)
-              self.class.new(YAML.load(str))
-            end
+              def marshal_load(str)
+                self.class.new(YAML.load(str))
+              end
 
-            def self._load(str)
-              self.class.new(YAML.load(str))
-            end
+              def self._load(str)
+                self.class.new(YAML.load(str))
+              end
 
+            end
           end
         end
       end
-
     end # class Base
   end # module Api
 end # module Smshelper
