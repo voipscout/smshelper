@@ -16,9 +16,9 @@ module Smshelper
 
         Savon.configure do |config|
           config.raise_errors = true
-          config.log = false
-          config.log_level = :error
-          HTTPI.log = false
+          config.log = true
+          config.log_level = :debug
+          HTTPI.log = true
         end
         @inbox = Array.new
         super
@@ -33,7 +33,6 @@ module Smshelper
           "com:type" => message_kind,
           "com:originator" => message.sender}
         body = body.merge(@extra_options) unless @extra_options.nil?
-
         resp = client.request(:com, :send_message_full) {|soap| soap.header["com:MessengerHeader"] = @header; soap.body = body}
         @sent_message_ids << resp.to_hash[:send_message_full_response][:send_message_full_result]
         resp.to_hash[:send_message_full_response][:send_message_full_result]
