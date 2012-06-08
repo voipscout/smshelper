@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 gem 'api_smith'
-gem 'savon'
+gem 'savon', '= 0.9.9'
 gem 'nokogiri'
 
 gem 'textmagic'
