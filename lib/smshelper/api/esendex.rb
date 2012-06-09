@@ -16,9 +16,9 @@ module Smshelper
 
         Savon.configure do |config|
           config.raise_errors = true
-          config.log = true
+          config.log = false
           config.log_level = :debug
-          HTTPI.log = true
+          HTTPI.log = false
         end
         @inbox = Array.new
         super
